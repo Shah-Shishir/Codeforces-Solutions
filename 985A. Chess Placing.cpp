@@ -63,17 +63,12 @@ int main (void)
         a = b = 0;
 
         for (i=0; i<n/2; i++)
+        {
             a += abs(arr[i]-(2*i+1));
-
-        for (i=0; i<n/2; i++)
             b += abs(arr[i]-(2*(i+1)));
+        }
 
-        if (a <= b)
-            pf ("%d",a);
-        else
-            pf ("%d",b);
-
-        pf ("\n");
+        pf ("%d\n",min(a,b));
     }
 
     return 0;
