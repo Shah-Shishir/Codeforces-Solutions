@@ -27,8 +27,10 @@ using namespace std;
 #define getstr getline (cin,str)
 #define pcase pf ("Case %d: ",pos)
 #define vi vector <int>
+#define vs vector <string>
 #define pii pair <int,int>
 #define mii map <int,int>
+#define msi map <string,int>
 #define pb push_back
 #define in insert
 #define llu unsigned long long
@@ -44,6 +46,8 @@ int ClearBit (int n, int x) { return n & ~(1 << x); }
 int ToggleBit (int n, int x) { return n ^ (1 << x); }
 bool CheckBit (int n, int x) { return (bool)(n & (1 << x)); }
 
+char str[5];
+
 int main (void)
 {
     /*
@@ -51,45 +55,39 @@ int main (void)
     freopen ("output.txt","w",stdout);
     */
 
-    int n,i,ans;
-    vector <string> v;
-    char str[5];
-
-    v.pb("M");
-    v.pb("S");
-    v.pb("XS");
-    v.pb("XXS");
-    v.pb("XXXS");
-    v.pb("L");
-    v.pb("XL");
-    v.pb("XXL");
-    v.pb("XXXL");
+    int n,i,j,ans;
 
     while (sf ("%d",&n) != EOF)
     {
-        map <string,int> x,y;
+        vs x,y;
+        msi m1,m2;
+        msi :: iterator it;
 
         for (i=1; i<=n; i++)
         {
             sf ("%s",str);
-            x[str]++;
+            x.pb(str);
+            m1[str]++;
         }
 
         for (i=1; i<=n; i++)
         {
             sf ("%s",str);
-            y[str]++;
+            y.pb(str);
+            m2[str]++;
         }
 
-        ans = 0;
+        ans = n;
 
-        for (i=0; i<9; i++)
-            ans += min (x[v[i]],y[v[i]]);
+        for (it=m1.begin(); it!=m1.end(); it++)
+            ans -= min (it->second,m2[it->first]);
 
-        pf ("%d\n",n-ans);
+        pf ("%d\n",ans);
 
         x.clear();
         y.clear();
+        m1.clear();
+        m2.clear();
     }
 
     return 0;
