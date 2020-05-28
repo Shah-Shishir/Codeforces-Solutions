@@ -1,0 +1,12 @@
+function solve(a,b) {
+    var p = a*b;
+    var h = Math.floor(p/2);
+    return (p % 2 == 0) ? h : ++h;
+}
+var t = Number(readline());
+while (t--) {
+    var arr = readline().split(' ').map(Number);
+    var a = arr[0];
+    var b = arr[1];
+    print(solve(a,b));
+}
