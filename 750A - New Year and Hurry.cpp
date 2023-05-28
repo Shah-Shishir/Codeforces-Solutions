@@ -4,7 +4,7 @@ using namespace std;
 int countSolvedProblems(int n, int k) {
     int left = 1;
     int right = n;
-    int result = -1;
+    int result = 0;
 
             
     while (left <= right) {
