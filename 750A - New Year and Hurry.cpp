@@ -1,52 +1,34 @@
-/***
-
-            Bismillahir Rahmanir Rahim
-            Read the name of Allah, who created you!!!
-            Author : Shah Newaj Rabbi Shishir
-            Department of CSE, City University, Bangladesh.
-
-***/
-
 #include <iostream>
-#include <cctype>
-#include <cstdlib>
-#include <cstdio>
-#include <string>
-#include <cstring>
-#include <algorithm>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <vector>
-#include <map>
-#include <iterator>
-#include <sstream>
-#include <iomanip>
 using namespace std;
 
-#define sf scanf
-#define pf printf
+int countSolvedProblems(int n, int k) {
+    int left = 1;
+    int right = n;
+    int result = 0;
 
-int main ()
-{
-    int n,k,i,sum,res,c;
+            
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        int totalTime = 5 * (mid * (mid + 1)) / 2;
 
-    while (cin >> n >> k)
-    {
-        res = 240 - k, sum = 0, c = 0;
-
-        for (i=1; i<=n; i++)
-        {
-            sum += 5 * i;
-
-            if (sum > res)
-                break;
-
-            c = c + 1;
+        if (totalTime <= (240 - k)) {
+            result = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
-
-        cout << c << endl;
     }
+
+    return result;
+}
+
+int main() {
+    int n, k;
+    cin >> n;
+    cin >> k;
+
+    int solvedProblems = countSolvedProblems(n, k);
+    cout << solvedProblems << endl;
 
     return 0;
 }
